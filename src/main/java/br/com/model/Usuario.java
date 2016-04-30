@@ -65,5 +65,4 @@ public class Usuario extends AbstractModelIdentifier implements Serializable {
         return id.toString();
     }
     
-    
 }
