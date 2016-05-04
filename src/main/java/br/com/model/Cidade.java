@@ -20,7 +20,7 @@ public class Cidade extends AbstractModelIdentifier implements Serializable {
     @Column(name = "CIDADE_CODIBGE")
     private String codIbge;
     @ManyToOne
-    @JoinColumn(name = "CIDADE_ID", nullable = false)
+    @JoinColumn(name = "ESTADO_ID", nullable = false)
     private Estado estado;
 
     public Cidade() {
