@@ -22,7 +22,7 @@ public class Estado extends AbstractModelIdentifier implements Serializable {
     @Column(name = "ESTADO_UF")
     private String uf;
     @OneToMany
-    @JoinColumn(name = "CIDADE_ID")
+    @JoinColumn(name = "CIDADE_ID", nullable = false)
     private Cidade cidade;
 
     public Estado() {

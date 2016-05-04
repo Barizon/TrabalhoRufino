@@ -20,7 +20,7 @@ public class Cliente extends AbstractModelIdentifier implements Serializable {
     @Column(name = "CLIENTE_CREDITO")
     private BigDecimal credito;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "PESSOA_ID", unique = true) //nullable = false
+    @JoinColumn(name = "PESSOA_ID", unique = true, nullable = false) 
     private Pessoa pessoa;
 
     public Cliente() {

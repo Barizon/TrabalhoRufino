@@ -13,9 +13,9 @@ import javax.persistence.Table;
 @Table(name = "PESSOAFISICA")
 public class PessoaFisica extends Pessoa implements Serializable {
     
-    @Column(name = "PESSOA_CPF", unique = true) //nullable = false
+    @Column(name = "PESSOA_CPF", unique = true, nullable = false) 
     private String cpf;
-    @Column(name = "PESSOA_RG", unique = true) //nullable = false
+    @Column(name = "PESSOA_RG", nullable = false) 
     private String rg;
 
     public String getCpf() {

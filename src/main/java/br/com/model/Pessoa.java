@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +28,9 @@ public abstract class Pessoa extends AbstractModelIdentifier implements Serializ
     private String cep;
     @Column(name = "PESSOA_NUMERO")
     private String numero;
+    @ManyToOne
+    @JoinColumn(name = "CIDADE_ID", nullable = false)
+    private Cidade cidade;
 
     public String getNome() {
         return nome;
@@ -67,6 +72,14 @@ public abstract class Pessoa extends AbstractModelIdentifier implements Serializ
         this.numero = numero;
     }
 
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+    
     @Override
     public String toString() {
         return id.toString();

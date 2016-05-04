@@ -13,7 +13,7 @@ import javax.persistence.MappedSuperclass;
  * @author barizon
  */
 @MappedSuperclass
-public class AbstractModelIdentifier implements Serializable{
+public abstract class AbstractModelIdentifier implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

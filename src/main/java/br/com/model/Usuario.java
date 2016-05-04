@@ -3,8 +3,6 @@ package br.com.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,10 +19,7 @@ public class Usuario extends AbstractModelIdentifier implements Serializable {
     private String login;
     @Column(name = "USUARIO_SENHA")
     private String senha;
-    @OneToMany
-    @JoinColumn(name = "VENDA_ID")
-    private Venda venda;
-
+    
     public Usuario() {
     }
 
@@ -50,14 +45,6 @@ public class Usuario extends AbstractModelIdentifier implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public Venda getVenda() {
-        return venda;
-    }
-
-    public void setVenda(Venda venda) {
-        this.venda = venda;
     }
 
     @Override
