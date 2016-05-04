@@ -21,9 +21,7 @@ public class Estado extends AbstractModelIdentifier implements Serializable {
     private String codIbge;
     @Column(name = "ESTADO_UF")
     private String uf;
-    @OneToMany
-    @JoinColumn(name = "CIDADE_ID", nullable = false)
-    private Cidade cidade;
+    
 
     public Estado() {
     }
@@ -50,14 +48,6 @@ public class Estado extends AbstractModelIdentifier implements Serializable {
 
     public void setUf(String uf) {
         this.uf = uf;
-    }
-
-    public Cidade getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(Cidade cidade) {
-        this.cidade = cidade;
     }
 
     @Override

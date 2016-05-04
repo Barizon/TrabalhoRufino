@@ -3,6 +3,8 @@ package br.com.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,7 +19,9 @@ public class Cidade extends AbstractModelIdentifier implements Serializable {
     private String nome;
     @Column(name = "CIDADE_CODIBGE")
     private String codIbge;
-
+    @ManyToOne
+    @JoinColumn(name = "CIDADE_ID", nullable = false)
+    private Estado estado;
 
     public Cidade() {
     }
@@ -37,10 +41,20 @@ public class Cidade extends AbstractModelIdentifier implements Serializable {
     public void setCodIbge(String codIbge) {
         this.codIbge = codIbge;
     }
-        
+      
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+    
     @Override
     public String toString() {
         return id.toString();
     }
+
+    
 
 }
