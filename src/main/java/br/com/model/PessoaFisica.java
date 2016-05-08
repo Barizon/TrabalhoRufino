@@ -18,6 +18,9 @@ public class PessoaFisica extends Pessoa implements Serializable {
     @Column(name = "PESSOA_RG", nullable = false) 
     private String rg;
 
+    public PessoaFisica() {
+    }
+    
     public String getCpf() {
         return cpf;
     }
