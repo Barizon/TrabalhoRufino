@@ -1,4 +1,4 @@
-package testes;
+package br.com.testes;
 
 
 import javax.persistence.EntityManagerFactory;
