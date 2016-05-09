@@ -7,5 +7,32 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     
-    
+    <h:form id="formCadastro" rendered="#{cidadeController.viewForm}">
+        <p:panel header="Formulario de Cadastro" toggleable="true">
+            <p:panelGrid id="grid" columns="1" layout="grid">
+                <p:inputText value="#{cidadeController.cidade.nome}"
+                             placeholder="Nome da cidade"
+                             style="width: 90%"
+                             required="true"
+                             requiredMessage="O nome da cidade é obrigatório"/>
+                <p:inputText value="#{cidadeController.cidade.codIbge}"
+                             placeholder="Código do IBGE"
+                             style="width: 90%"/>
+                <p:selectOneMenu value="#{cidadeController.cidade.estado}"
+                                 converter="#{estadoController.converter()}">
+                    <f:selectItems value="#{estadoController.listaEstado}"
+                                   var="item"
+                                   itemLabel="#{item.nome}"
+                                   itemValue="#{item}"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
+            <f:facet name="footer">
+                <p:commandButton value="Salvar" action="#{cidadeController.salvar()}"
+                                 ajax="false"/>
+                <p:commandButton value="Cancelar" action="listagem?faces-redirect=true"
+                                 immediate="true"
+                                 ajax="false"/>
+            </f:facet>
+        </p:panel>
+    </h:form>
 </html>
