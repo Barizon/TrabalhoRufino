@@ -45,17 +45,17 @@ public class CidadeController implements Serializable {
         }
     }
     
-    public void Alterar() {
+    public void alterar() {
         viewList = false;
         viewForm = true;
     }
     
-    public String Salvar() {
+    public String salvar() {
         cidade = cidadeService.salvar(cidade);
         return "listagem?faces-redirect=true";
     }
     
-    public void Excluir() {
+    public void excluir() {
         cidadeService.excluir(cidade);
     }
     
