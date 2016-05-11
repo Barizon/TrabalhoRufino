@@ -11,12 +11,12 @@
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="conteudo">
             <ui:include src="formulario.xhtml"/>
-            <h:form rendered="#{cidadeController.viewList}">
-                <p:dataTable id="tabCidade"
-                             value="#{cidadeController.listaEntidade}"
+            <h:form rendered="#{estadoController.viewList}">
+                <p:dataTable id="tabEstado"
+                             value="#{estadoController.listaEntidade}"
                              var="item"
                              selectionMode="single"
-                             selection="#{cidadeController.entidade}"
+                             selection="#{estadoController.entidade}"
                              rowKey="#{item.id}"
                              paginator="true"
                              rows="10"
@@ -30,24 +30,18 @@
                     <p:column headerText="Nome">
                         <h:outputText value="#{item.nome}"/>
                     </p:column>
-                    <p:column headerText="UF">
-                        <h:outputText value="#{item.estado.uf}"/>
-                    </p:column>
-                    <p:column headerText="IBGE">
-                        <h:outputText value="#{item.codIbge}"/>
-                    </p:column>
                     <f:facet name="footer">
                         <p:commandButton id="novo" value="Novo"
-                                         action="#{cidadeController.cria()}"
+                                         action="#{estadoController.cria()}"
                                          ajax="false"/>
                         <p:commandButton id="alterar" value="Alterar"
-                                         disabled="#{empty cidadeController.entidade.id}"
-                                         action="#{cidadeController.alterar()}"
+                                         disabled="#{empty estadoController.entidade.id}"
+                                         action="#{estadoController.alterar()}"
                                          ajax="false"/>
                         <p:commandButton id="deletar" value="Excluir"
-                                         disabled="#{empty cidadeController.entidade.id}"
-                                         action="#{cidadeController.excluir()}"
-                                         update="tabCidade">
+                                         disabled="#{empty estadoController.entidade.id}"
+                                         action="#{estadoController.excluir()}"
+                                         update="tabEstado">
                             <p:confirm header="Confirmação de exclusão" message="Deseja Excluir?"
                                        icon="ui-icon-alert"/>
                         </p:commandButton>
