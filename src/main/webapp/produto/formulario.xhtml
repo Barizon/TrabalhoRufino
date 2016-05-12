@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:form id="formCadastro" rendered="#{produtoController.viewForm}">
+        <p:panel header="Formulario de Cadastro de Produto" toggleable="true">
+            <p:panelGrid id="grid" columns="1" layout="grid">
+                <p:inputText value="#{produtoController.entidade.nome}"
+                             placeholder="Nome do produto"
+                             style="width: 90%"
+                             required="true"
+                             requiredMessage="O nome do produto é obrigatório"/>
+                <p:inputText value="#{produtoController.entidade.ncm}"
+                             placeholder="Código NCM"
+                             required="true"
+                             requiredMessage="O NCM do produto é obrigatório"
+                             style="width: 90%"/>
+                <p:inputText value="#{produtoController.entidade.preco}"
+                             placeholder="Preço do produto"
+                             required="true"
+                             requiredMessage="O preço do produto é obrigatório"
+                             style="width: 90%"/>
+                <p:inputText value="#{produtoController.entidade.estoque}"
+                             placeholder="Quantidade em estoque"
+                             style="width: 90%"/>
+                <p:inputText value="#{produtoController.entidade.unidadeMedida}"
+                             placeholder="Unidade de medida"
+                             required="true"
+                             requiredMessage="A unidade de medida é obrigatório"
+                             style="width: 90%"/>
+            </p:panelGrid>
+                    
+            <f:facet name="footer">
+                <p:commandButton value="Salvar" action="#{produtoController.salvar()}"
+                                 ajax="false"/>
+                <p:commandButton value="Cancelar" action="listagem?faces-redirect=true"
+                                 immediate="true"
+                                 ajax="false"/>
+            </f:facet>
+        </p:panel>
+    </h:form>
+</html>

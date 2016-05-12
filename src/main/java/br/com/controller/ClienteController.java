@@ -55,7 +55,7 @@ public class ClienteController extends AbstractController<Cliente> implements Se
     public void alterar() {
         setViewList(false); 
         setViewForm(true);
-        if (getEntidade().getPessoa() instanceof PessoaFisica) {
+        if (super.getEntidade().getPessoa() instanceof PessoaFisica) {
             tipoPessoa = "PF";
         } else {
             tipoPessoa = "PJ";
