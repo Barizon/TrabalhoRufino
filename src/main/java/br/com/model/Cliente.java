@@ -25,6 +25,10 @@ public class Cliente extends AbstractModelIdentifier implements Serializable {
 
     public Cliente() {
     }
+    
+    public Cliente(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
 
     public BigDecimal getCredito() {
         return credito;
