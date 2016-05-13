@@ -32,6 +32,9 @@ public abstract class Pessoa extends AbstractModelIdentifier implements Serializ
     @JoinColumn(name = "CIDADE_ID", nullable = false)
     private Cidade cidade;
 
+    public Pessoa() {
+    }
+
     public String getNome() {
         return nome;
     }

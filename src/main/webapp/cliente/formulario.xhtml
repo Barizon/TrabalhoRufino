@@ -45,7 +45,7 @@ and open the template in the editor.
                              placeholder="IE do cliente"
                              rendered="#{clienteController.tipoPessoa=='PJ'}"/>
                 
-                <p:selectOneMenu value="#{clienteController.entidade.pessoa.cidade.nome}"
+                <p:selectOneMenu value="#{cidadeController.entidade.nome}"
                                  converter="#{cidadeController.converter()}">
                     <f:selectItems value="#{cidadeController.listaEntidade}"
                                    var="item"
