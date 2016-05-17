@@ -46,6 +46,7 @@ and open the template in the editor.
                              rendered="#{clienteController.tipoPessoa=='PJ'}"/>
                 
                 <p:selectOneMenu value="#{clienteController.entidade.pessoa.cidade}"
+                                 filter="true" filterMatchMode="contains"
                                  converter="#{cidadeController.converter()}">
                     <f:selectItems value="#{cidadeController.listaEntidade}"
                                    var="item"

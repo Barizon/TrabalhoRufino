@@ -20,7 +20,8 @@
                              style="width: 90%"/>
             </p:panelGrid>
                     <p:selectOneMenu value="#{cidadeController.entidade.estado}"
-                             converter="#{estadoController.converter()}">
+                                     filter="true" filterMatchMode="contains"
+                                     converter="#{estadoController.converter()}">
                          <f:selectItems value="#{estadoController.listaEntidade}"
                                var="item"
                                itemLabel="#{item.nome}"
