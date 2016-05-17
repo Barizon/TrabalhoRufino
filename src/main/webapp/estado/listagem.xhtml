@@ -30,6 +30,9 @@
                     <p:column headerText="Nome">
                         <h:outputText value="#{item.nome}"/>
                     </p:column>
+                    <p:column>
+                        <h:outputText value="#{item.uf}"/>
+                    </p:column>
                     <f:facet name="footer">
                         <p:commandButton id="novo" value="Novo"
                                          action="#{estadoController.cria()}"

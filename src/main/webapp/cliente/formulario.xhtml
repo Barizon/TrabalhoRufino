@@ -26,10 +26,21 @@ and open the template in the editor.
                 <p:inputText value="#{clienteController.entidade.pessoa.fone}"
                              placeholder="Fone do cliente"
                              style="width: 90%"/>
+                <p:inputText value="#{clienteController.entidade.pessoa.cep}"
+                             placeholder="CEP do cliente"
+                             style="width: 90%"/>
+                <p:inputText value="#{clienteController.entidade.pessoa.numero}"
+                             placeholder="Numero da residencia"
+                             style="width: 90%"/>
                 <p:inputText value="#{clienteController.entidade.pessoa.endereco}"
                              placeholder="Endereço do cliente"
                              style="width: 90%"/>
-
+                <p:inputText value="#{clienteController.entidade.credito}"
+                             placeholder="Crédito do cliente" style="width: 90%">
+                             <f:convertNumber locale="pt_BR" maxFractionDigits="5"
+                                              minFractionDigits="2"/>
+                             </p:inputText>
+                                              
                 <p:inputMask mask="999.999.999-99" value="#{clienteController.entidade.pessoa.cpf}"
                              placeholder="CPF do cliente"
                              rendered="#{clienteController.tipoPessoa=='PF'}">
