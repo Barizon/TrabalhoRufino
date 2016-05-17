@@ -34,7 +34,7 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
     @JoinColumn(name = "PESSOA_ID", nullable = false)
     private Pessoa pessoa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "venda", fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<VendaItem> vendaItem;
+    private List<VendaItem> vendaItens;
     @ManyToOne
     @JoinColumn(name = "USUARIO_ID", nullable = false)
     private Usuario usuario;
@@ -42,6 +42,36 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
     public Venda() {
     }
 
+    public void calcularTotal() {
+        if (desconto == null || desconto.compareTo(total) >= 0) {
+            desconto = BigDecimal.ZERO;
+        }
+        total = BigDecimal.ZERO;
+        for (VendaItem vitens : vendaItens) {
+            total = total.add(vitens.getPreco().multiply(vitens.getQuantidade()));
+        }
+        total = total.subtract(desconto);
+    }
+    
+    public void adicionaItem(VendaItem item) throws Exception {
+        item.setVenda(this);
+        if (!vendaItens.contains(item)){
+            item.setPreco(item.getProduto().getPreco());
+            vendaItens.add(item);
+            calcularTotal();
+            item.getProduto().baixaEstoque(item.getQuantidade());
+        } else {
+            throw new Exception("O produto" + item.getProduto().getNome() 
+                    + "já foi adicionado à venda");
+        }
+    }
+    
+    public void removeItem(VendaItem item) {
+        vendaItens.remove(item);
+        calcularTotal();
+        item.getProduto().voltaEstoque(item.getQuantidade());
+    }
+    
     public BigDecimal getTotal() {
         return total;
     }
@@ -74,12 +104,12 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
         this.pessoa = pessoa;
     }
     
-     public List<VendaItem> getVendaItem() {
-        return vendaItem;
+     public List<VendaItem> getVendaItens() {
+        return vendaItens;
     }
 
-    public void setVendaItem(List<VendaItem> vendaItem) {
-        this.vendaItem = vendaItem;
+    public void setVendaItens(List<VendaItem> vendaItens) {
+        this.vendaItens = vendaItens;
     }
     
      public Usuario getUsuario() {
@@ -95,7 +125,4 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
         return id.toString();
     }
 
-   
-    
-    
 }

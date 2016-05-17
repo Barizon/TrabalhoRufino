@@ -31,13 +31,13 @@ and open the template in the editor.
                         <h:outputText value="#{item.id}"/>
                     </p:column>
                     <p:column headerText="Nome">
-                        <h:outputText value="#{item.nome}"/>
+                        <h:outputText value="#{item.pessoa.nome}"/>
                     </p:column>
                     <p:column headerText="Fone">
-                        <h:outputText value="#{item.fone}"/>
+                        <h:outputText value="#{item.pessoa.fone}"/>
                     </p:column>
                     <p:column headerText="Endereço">
-                        <h:outputText value="#{item.endereco}"/>
+                        <h:outputText value="#{item.pessoa.endereco}"/>
                     </p:column>
                     <f:facet name="footer">
                         <p:commandButton id="novo" value="Novo"

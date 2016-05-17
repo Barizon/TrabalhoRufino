@@ -28,6 +28,18 @@ public class Produto extends AbstractModelIdentifier implements Serializable {
     public Produto() {
     }
 
+    public void baixaEstoque(BigDecimal qtde) throws Exception {
+        if (estoque.compareTo(qtde) > 0) {
+            estoque = estoque.subtract(qtde);
+        } else {
+            throw new Exception("Quantidade em estoque insuficiente.");
+        }
+    }
+    
+    public void voltaEstoque(BigDecimal qtde) {
+        estoque = estoque.add(qtde);
+    }
+    
     public String getNome() {
         return nome;
     }
