@@ -10,7 +10,7 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    
+
     <ui:composition template="/WEB-INF/template.xhtml">
         <ui:define name="conteudo">
             <ui:include src="formulario.xhtml"/>
@@ -25,6 +25,7 @@ and open the template in the editor.
                              rows="10"
                              paginatorPosition="bottom"
                              reflow="true">
+             
                     <p:ajax event="rowSelect" update="alterar deletar"/>
                     <p:ajax event="rowUnselect" update="alterar deletar"/>
                     <p:column headerText="ID">
@@ -39,6 +40,16 @@ and open the template in the editor.
                     <p:column headerText="Endereço">
                         <h:outputText value="#{item.pessoa.endereco}"/>
                     </p:column>
+                    <p:column headerText="Numero">
+                        <h:outputText value="#{item.pessoa.numero}"/>
+                    </p:column>
+                    <p:column headerText="CEP">
+                        <h:outputText value="#{item.pessoa.cep}"/>
+                    </p:column>
+                    <p:column headerText="Crédito">
+                        <h:outputText value="#{item.credito}"/>
+                    </p:column>
+                    
                     <f:facet name="footer">
                         <p:commandButton id="novo" value="Novo"
                                          action="#{clienteController.cria()}"
@@ -54,6 +65,8 @@ and open the template in the editor.
                             <p:confirm header="Confirmação de exclusão" message="Deseja excluir?" 
                                        icon="ui-icon-alert" />
                         </p:commandButton>
+                        <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+                        <p:columnToggler datasource="tabCliente" trigger="toggler" />
                     </f:facet>
                 </p:dataTable>
             </h:form>
