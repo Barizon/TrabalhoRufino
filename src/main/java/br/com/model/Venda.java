@@ -59,10 +59,22 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
             item.setPreco(item.getProduto().getPreco());
             vendaItens.add(item);
             calcularTotal();
-            item.getProduto().baixaEstoque(item.getQuantidade());
+            //validar estoque
         } else {
             throw new Exception("O produto" + item.getProduto().getNome() 
                     + "já foi adicionado à venda");
+        }
+    }
+    
+    public void movimenta() throws Exception {
+        for (VendaItem item : vendaItens) {
+            item.getProduto().baixaEstoque(item.getQuantidade());
+        } 
+    }
+    
+    public void validarVenda() throws Exception {
+        if (vendaItens.isEmpty()) {
+            throw new Exception("Não é possivel salvar uma venda sem itens");
         }
     }
     

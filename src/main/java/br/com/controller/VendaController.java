@@ -42,4 +42,17 @@ public class VendaController extends AbstractController<Venda> implements Serial
             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         }
     }
+    
+    public void removeItem (VendaItem vi) {
+        super.getEntidade().removeItem(vi);
+    }
+
+    public VendaItem getVendaItem() {
+        return vendaItem;
+    }
+
+    public void setVendaItem(VendaItem vendaItem) {
+        this.vendaItem = vendaItem;
+    }
+    
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    
+    <ui:composition template="/WEB-INF/template.xhtml">
+        <ui:define name="conteudo">
+            <!--<ui:include src="formulario.xhtml"/>-->
+            <h:form rendered="#{vendaController.viewList}">
+                <p:dataTable id="tabVenda"
+                             value="#{vendaController.listaEntidade}"
+                             var="item"
+                             selectionMode="single"
+                             selection="#{vendaController.entidade}"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             paginatorPosition="bottom"
+                             reflow="true">
+                    <p:ajax event="rowSelect" update="deletar"/>
+                    <p:ajax event="rowUnselect" update="deletar"/>
+                    <p:column headerText="ID">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                    <p:column headerText="Cliente">
+                        <h:outputText value="#{item.pessoa.nome}"/>
+                    </p:column>
+                    <p:column headerText="Data da venda">
+                        <h:outputText value="#{item.dataVenda}"/>
+                    </p:column>
+                    <p:column headerText="Vendedor">
+                        <h:outputText value="#{item.usuario.nome}"/>
+                    </p:column>
+                    <p:column headerText="Total">
+                        <h:outputText value="#{item.total}"/>
+                    </p:column>
+                    
+                    <f:facet name="footer">
+                        <p:commandButton id="novo" value="Novo"
+                                         action="#{vendaController.cria()}"
+                                         ajax="false"/>
+                        
+                        <p:commandButton id="deletar" value="Excluir"
+                                         disabled="#{empty vendaController.entidade.id}"
+                                         action="#{vendaController.excluir()}"
+                                         update="tabVenda">
+                            <p:confirm header="Confirmação de exclusão" message="Deseja Excluir?"
+                                       icon="ui-icon-alert"/>
+                        </p:commandButton>
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

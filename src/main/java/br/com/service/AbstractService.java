@@ -1,5 +1,6 @@
 package br.com.service;
 
+import br.com.model.Venda;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -20,7 +21,12 @@ public abstract class AbstractService<T> implements Serializable{
     
     public abstract EntityManager getEm();
     
-    public T salvar(T entidade) {
+    public T salvar(T entidade) throws Exception {
+        if (entidade instanceof Venda) {
+            Venda v = (Venda) entidade;
+            v.movimenta();
+            v.validarVenda();
+        }
         entidade = getEm().merge(entidade);
         return entidade;
     }
