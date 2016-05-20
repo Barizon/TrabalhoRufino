@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:form id="formVenda" rendered="#{vendaController.viewForm}">
+        <p:panel header="Venda" toggleable="true">
+            <p:panelGrid id="grid" columns="1" layout="grid">
+                <p:inputText value="#{usuarioController.entidade.nome}"
+                             placeholder="Nome do usuario"
+                             style="width: 90%"
+                             required="true"
+                             requiredMessage="O nome do usuario é obrigatório"/>
+                <p:inputText value="#{usuarioController.entidade.login}"
+                             placeholder="Login"
+                             required="true"
+                             requiredMessage="O login é obrigatório"
+                             style="width: 90%"/>
+                <p:password  value="#{usuarioController.entidade.senha}"
+                             placeholder="Senha"
+                             required="true"
+                             requiredMessage="A senha é obrigatória"
+                             style="width: 90%"/>
+                
+            </p:panelGrid>
+                    
+            <f:facet name="footer">
+                <p:commandButton value="Salvar" action="#{usuarioController.salvar()}"
+                                 ajax="false"/>
+                <p:commandButton value="Cancelar" action="listagem?faces-redirect=true"
+                                 immediate="true"
+                                 ajax="false"/>
+            </f:facet>
+        </p:panel>
+    </h:form>
+</html>
