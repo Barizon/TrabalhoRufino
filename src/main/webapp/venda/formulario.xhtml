@@ -48,8 +48,53 @@
                 <p:commandButton value="Adicionar" action="#{vendaController.adicionaItem()}"
                                  ajax="false"/>
             </p:panelGrid>
+
+            <p:dataTable value="#{vendaController.entidade.vendaItens}"
+                         var="item">
+                <p:column headerText="Produto">
+                    <h:outputText value="#{item.produto.nome}"/>
+                </p:column>
+                <p:column headerText="Preço">
+                    <h:outputText value="#{item.preco}">
+                        <f:convertNumber minFractionDigits="2"
+                                         maxFractionDigits="2"
+                                         type="currency"
+                                         currencySymbol="R$"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Quantidade">
+                    <p:inputText value="#{item.quantidade}">
+                        <f:convertNumber minFractionDigits="2"
+                                         maxFractionDigits="2"/>
+                        <f:ajax event="keyup" listener="#{vendaController.entidade.calcularTotal()}"
+                                render=":vform:total"/>
+                    </p:inputText>
+                </p:column>
+                <p:column headerText="Remover">
+                    <p:commandButton value="Remover"
+                                     action="#{vendaController.removeItem(item)}"
+                                     ajax="false"/>
+                </p:column>
+            </p:dataTable>
             
-            
+            <p:panelGrid id="total" columns="2" layout="grid">
+                <p:outputLabel value="Desconto:" for="total"/>
+                <p:inputText value="#{vendaController.entidade.desconto}">
+                    <f:convertNumber minFractionDigits="2"
+                                     maxFractionDigits="2"/>
+                    <f:ajax event="keyup" listener="#{vendaController.entidade.calcularTotal()}"
+                            render="total"/>
+                </p:inputText>
+
+                <p:outputLabel value="Total:" for="total"/>
+                <p:inputText value="#{vendaController.entidade.total}"
+                             readonly="true">
+                    <f:convertNumber minFractionDigits="2"
+                                     maxFractionDigits="2"
+                                     type="currency"
+                                     currencySymbol="R$"/>
+                </p:inputText>
+            </p:panelGrid>
 
             <f:facet name="footer">
                 <p:commandButton value="Salvar" action="#{vendaController.salvar()}"

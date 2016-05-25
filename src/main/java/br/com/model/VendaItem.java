@@ -2,6 +2,7 @@ package br.com.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -23,7 +24,7 @@ public class VendaItem extends AbstractModelIdentifier implements Serializable {
     @ManyToOne
     @JoinColumn(name = "VENDA_ID", nullable = false)
     private Venda venda;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "PRODUTO_ID", nullable = false)
     private Produto produto;
 
