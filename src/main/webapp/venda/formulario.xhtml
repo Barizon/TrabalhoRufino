@@ -9,27 +9,50 @@
 
     <h:form id="formVenda" rendered="#{vendaController.viewForm}">
         <p:panel header="Venda" toggleable="true">
-            <p:panelGrid id="grid" columns="1" layout="grid">
-                <p:inputText value="#{usuarioController.entidade.nome}"
-                             placeholder="Nome do usuario"
-                             style="width: 90%"
-                             required="true"
-                             requiredMessage="O nome do usuario é obrigatório"/>
-                <p:inputText value="#{usuarioController.entidade.login}"
-                             placeholder="Login"
-                             required="true"
-                             requiredMessage="O login é obrigatório"
-                             style="width: 90%"/>
-                <p:password  value="#{usuarioController.entidade.senha}"
-                             placeholder="Senha"
-                             required="true"
-                             requiredMessage="A senha é obrigatória"
-                             style="width: 90%"/>
-                
+            <p:panelGrid id="cabecalho" columns="2" layout="grid">
+                <p:outputLabel value="Data:" for="cabecalho"/>
+                <p:calendar id="data" 
+                            pattern="dd/MM/yyyy HH:mm:ss" disabled="true"
+                            value="#{vendaController.entidade.dataVenda}"/>
+                <p:outputLabel value="Cliente:" for="cabecalho"/>
+                <p:selectOneMenu value="#{vendaController.entidade.cliente}"
+                                 filter="true" filterMatchMode="contains"
+                                 converter="#{clienteController.converter()}">
+                    <f:selectItems value="#{clienteController.listaEntidade}"
+                                   var="item"
+                                   itemLabel="#{item.pessoa.nome}"
+                                   itemValue="#{item}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Usuario" for="cabecalho"/>
+                <p:selectOneMenu value="#{vendaController.entidade.usuario}"
+                                 filter="true" filterMatchMode="contains"
+                                 converter="#{usuarioController.converter()}">
+                    <f:selectItems value="#{usuarioController.listaEntidade}"
+                                   var="item"
+                                   itemLabel="#{item.nome}"
+                                   itemValue="#{item}"/>
+                </p:selectOneMenu>
             </p:panelGrid>
-                    
+            <p:panelGrid id="produto" columns="5" layout="grid">
+                <p:outputLabel value="Produto" for="produto"/>
+                <p:selectOneMenu value="#{vendaController.vendaItem.produto}"
+                                 filter="true" filterMatchMode="contains"
+                                 converter="#{produtoController.converter()}">
+                    <f:selectItems value="#{produtoController.listaEntidade}"
+                                   var="item"
+                                   itemLabel="#{item.nome}"
+                                   itemValue="#{item}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Quantidade" for="produto"/>
+                <p:spinner value="#{vendaController.vendaItem.quantidade}"/>
+                <p:commandButton value="Adicionar" action="#{vendaController.adicionaItem()}"
+                                 ajax="false"/>
+            </p:panelGrid>
+            
+            
+
             <f:facet name="footer">
-                <p:commandButton value="Salvar" action="#{usuarioController.salvar()}"
+                <p:commandButton value="Salvar" action="#{vendaController.salvar()}"
                                  ajax="false"/>
                 <p:commandButton value="Cancelar" action="listagem?faces-redirect=true"
                                  immediate="true"

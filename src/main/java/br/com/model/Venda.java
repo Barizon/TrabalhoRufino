@@ -2,6 +2,7 @@ package br.com.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -29,12 +30,12 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
     private BigDecimal desconto;
     @Column(name = "DATA_VENDA")
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dataVenda;
+    private Date dataVenda = new Date();
     @ManyToOne
-    @JoinColumn(name = "PESSOA_ID", nullable = false)
-    private Pessoa pessoa;
+    @JoinColumn(name = "CLIENTE_ID", nullable = false)
+    private Cliente cliente;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "venda", fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<VendaItem> vendaItens;
+    private List<VendaItem> vendaItens = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "USUARIO_ID", nullable = false)
     private Usuario usuario;
@@ -108,12 +109,12 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
         this.dataVenda = dataVenda;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     
      public List<VendaItem> getVendaItens() {
@@ -136,5 +137,7 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
     public String toString() {
         return id.toString();
     }
+
+    
 
 }

@@ -34,9 +34,14 @@ public class VendaController extends AbstractController<Venda> implements Serial
     
     public void adicionaItem() {
         try {
+             System.out.println("entrou");
             super.getEntidade().adicionaItem(vendaItem);
+            for (VendaItem i : super.getEntidade().getVendaItens()) {
+                System.out.println(i.getProduto().getNome());
+            }
             vendaItem = new VendaItem();
         } catch (Exception ex) {
+    ex.printStackTrace();
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_FATAL,
                     ex.getMessage(), "");
             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
