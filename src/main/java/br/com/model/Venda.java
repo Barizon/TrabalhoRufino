@@ -8,6 +8,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,6 +41,9 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
     @ManyToOne
     @JoinColumn(name = "USUARIO_ID", nullable = false)
     private Usuario usuario;
+    @Column(name = "VENDA_TIPO", nullable = true)
+    @Enumerated(EnumType.STRING)
+    private VendaTipo vendaTipo = VendaTipo.FINALIZADA;
 
     public Venda() {
     }
@@ -132,12 +137,18 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+    
+    public VendaTipo getVendaTipo() {
+        return vendaTipo;
+    }
+
+    public void setVendaTipo(VendaTipo vendaTipo) {
+        this.vendaTipo = vendaTipo;
+    }
 
     @Override
     public String toString() {
         return id.toString();
     }
-
-    
 
 }

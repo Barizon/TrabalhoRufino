@@ -33,7 +33,7 @@
                                    itemValue="#{item}"/>
                 </p:selectOneMenu>
             </p:panelGrid>
-            <p:panelGrid id="produto" columns="5" layout="grid">
+            <p:panelGrid id="produto" columns="7" layout="grid">
                 <p:outputLabel value="Produto" for="produto"/>
                 <p:selectOneMenu value="#{vendaController.vendaItem.produto}"
                                  filter="true" filterMatchMode="contains"
@@ -42,7 +42,10 @@
                                    var="item"
                                    itemLabel="#{item.nome}"
                                    itemValue="#{item}"/>
+                    <f:ajax event="change" render="est"/>
                 </p:selectOneMenu>
+                <p:outputLabel value="Estoque" for="produto"/>
+                <p:outputLabel id="est" value="#{vendaController.vendaItem.produto.estoque}"/>
                 <p:outputLabel value="Quantidade" for="produto"/>
                 <p:spinner value="#{vendaController.vendaItem.quantidade}"/>
                 <p:commandButton value="Adicionar" action="#{vendaController.adicionaItem()}"

@@ -39,17 +39,20 @@
                     <p:column headerText="Total">
                         <h:outputText value="#{item.total}"/>
                     </p:column>
+                    <p:column headerText="Status">
+                        <h:outputText value="#{item.vendaTipo.descricao}"/>
+                    </p:column>
                     
                     <f:facet name="footer">
                         <p:commandButton id="novo" value="Novo"
                                          action="#{vendaController.cria()}"
                                          ajax="false"/>
                         
-                        <p:commandButton id="deletar" value="Excluir"
+                        <p:commandButton id="deletar" value="Estornar"
                                          disabled="#{empty vendaController.entidade.id}"
                                          action="#{vendaController.excluir()}"
                                          update="tabVenda">
-                            <p:confirm header="Confirmação de exclusão" message="Deseja Excluir?"
+                            <p:confirm header="Confirmação de exclusão" message="Deseja Estornar?"
                                        icon="ui-icon-alert"/>
                         </p:commandButton>
                     </f:facet>
