@@ -59,6 +59,13 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
         total = total.subtract(desconto);
     }
     
+    public void estornaVenda() {
+        for (VendaItem vitens : vendaItens) {
+            vitens.getProduto().voltaEstoque(vitens.getQuantidade());
+        }
+        vendaTipo = VendaTipo.ESTORNADA;
+    }
+    
     public void adicionaItem(VendaItem item) throws Exception {
         item.setVenda(this);
         if (!vendaItens.contains(item)){

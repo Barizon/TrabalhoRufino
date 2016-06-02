@@ -49,10 +49,11 @@
                                          ajax="false"/>
                         
                         <p:commandButton id="deletar" value="Estornar"
-                                         disabled="#{empty vendaController.entidade.id}"
-                                         action="#{vendaController.excluir()}"
+                                         disabled="#{empty vendaController.entidade.id 
+                                                     or vendaController.entidade.vendaTipo.descricao=='Estornada'}"
+                                         action="#{vendaController.estornaVenda()}"
                                          update="tabVenda">
-                            <p:confirm header="Confirmação de exclusão" message="Deseja Estornar?"
+                            <p:confirm header="Confirmação de estorno" message="Deseja Estornar?"
                                        icon="ui-icon-alert"/>
                         </p:commandButton>
                     </f:facet>

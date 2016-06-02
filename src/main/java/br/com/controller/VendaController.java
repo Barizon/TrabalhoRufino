@@ -44,6 +44,17 @@ public class VendaController extends AbstractController<Venda> implements Serial
         }
     }
     
+    public void estornaVenda() {
+        try {
+            super.getEntidade().estornaVenda();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_FATAL,
+                    ex.getMessage(), "");
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+        }
+    }
+    
     public void removeItem (VendaItem vi) {
         super.getEntidade().removeItem(vi);
     }
