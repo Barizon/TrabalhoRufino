@@ -18,32 +18,32 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class VendaController extends AbstractController<Venda> implements Serializable {
-    
+
     @Inject
     private VendaService vendaService;
     private VendaItem vendaItem = new VendaItem();
-    
+
     public VendaController() {
         super(Venda.class);
     }
-    
+
     @Override
     protected AbstractService getService() {
         return vendaService;
     }
-    
+
     public void adicionaItem() {
         try {
             super.getEntidade().adicionaItem(vendaItem);
             vendaItem = new VendaItem();
         } catch (Exception ex) {
-    ex.printStackTrace();
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_FATAL,
+            ex.printStackTrace();
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN,
                     ex.getMessage(), "");
             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         }
     }
-    
+
     public void estornaVenda() {
         try {
             super.getEntidade().estornaVenda();
@@ -54,8 +54,8 @@ public class VendaController extends AbstractController<Venda> implements Serial
             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         }
     }
-    
-    public void removeItem (VendaItem vi) {
+
+    public void removeItem(VendaItem vi) {
         super.getEntidade().removeItem(vi);
     }
 
@@ -66,5 +66,5 @@ public class VendaController extends AbstractController<Venda> implements Serial
     public void setVendaItem(VendaItem vendaItem) {
         this.vendaItem = vendaItem;
     }
-    
+
 }

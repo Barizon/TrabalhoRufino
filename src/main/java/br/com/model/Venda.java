@@ -74,8 +74,8 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
             calcularTotal();
             //validar estoque
         } else {
-            throw new Exception("O produto" + item.getProduto().getNome() 
-                    + "já foi adicionado à venda");
+            throw new Exception("O produto " + item.getProduto().getNome() 
+                    + " já foi adicionado à venda");
         }
     }
     
