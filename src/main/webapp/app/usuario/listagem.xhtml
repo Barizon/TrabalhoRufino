@@ -36,6 +36,9 @@
                     <p:column headerText="Senha">
                         <h:outputText value="#{item.senha}"/>
                     </p:column>
+                    <p:column headerText="Nível de acesso">
+                        <h:outputText value="#{item.nivelAcesso.descricao}"/>
+                    </p:column>
                     
                     <f:facet name="footer">
                         <p:commandButton id="novo" value="Novo"

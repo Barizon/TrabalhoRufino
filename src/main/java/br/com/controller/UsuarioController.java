@@ -1,5 +1,7 @@
 package br.com.controller;
 
+import br.com.converter.GenericConverter;
+import br.com.model.NivelAcesso;
 import br.com.model.Usuario;
 import br.com.service.AbstractService;
 import br.com.service.UsuarioService;
@@ -18,9 +20,21 @@ public class UsuarioController extends AbstractController<Usuario> implements Se
     
     @Inject
     private UsuarioService usuarioService;
+    private GenericConverter genericConverter;
+    
+    public GenericConverter converter() {
+        if (genericConverter == null) {
+            genericConverter = new GenericConverter(usuarioService);
+        }
+        return genericConverter;
+    }
     
     public UsuarioController() {
         super(Usuario.class);
+    }
+    
+    public NivelAcesso[] getNiveisAcesso() {
+        return NivelAcesso.values();
     }
     
     @Override

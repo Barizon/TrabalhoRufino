@@ -36,11 +36,12 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
     @ManyToOne
     @JoinColumn(name = "CLIENTE_ID", nullable = false)
     private Cliente cliente;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "venda", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, 
+            mappedBy = "venda", 
+            fetch = FetchType.LAZY, 
+            orphanRemoval = true)
     private List<VendaItem> vendaItens = new ArrayList<>();
-    @ManyToOne
-    @JoinColumn(name = "USUARIO_ID", nullable = false)
-    private Usuario usuario;
+    
     @Column(name = "VENDA_TIPO", nullable = true)
     @Enumerated(EnumType.STRING)
     private VendaTipo vendaTipo = VendaTipo.FINALIZADA;
@@ -135,14 +136,6 @@ public class Venda extends AbstractModelIdentifier implements Serializable {
 
     public void setVendaItens(List<VendaItem> vendaItens) {
         this.vendaItens = vendaItens;
-    }
-    
-     public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
     
     public VendaTipo getVendaTipo() {

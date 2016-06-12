@@ -25,6 +25,13 @@
                              required="true"
                              requiredMessage="A senha é obrigatória"
                              style="width: 90%"/>
+                <p:outputLabel value="Nível de acesso" for="nivel"/>
+                <p:selectOneMenu id="nivel" value="#{usuarioController.entidade.nivelAcesso}">
+                    <f:selectItems value="#{usuarioController.niveisAcesso}"
+                                   var="nivel"
+                                   itemValue="#{nivel}"
+                                   itemLabel="#{nivel.descricao}"/>
+                </p:selectOneMenu>
                 
             </p:panelGrid>
                     

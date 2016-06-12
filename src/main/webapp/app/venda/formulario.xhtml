@@ -27,15 +27,7 @@
                                    itemLabel="#{item.pessoa.nome}"
                                    itemValue="#{item}"/>
                 </p:selectOneMenu>
-                <p:outputLabel value="Usuario" for="cabecalho"/>
-                <p:selectOneMenu value="#{vendaController.entidade.usuario}"
-                                 filter="true" filterMatchMode="contains"
-                                 converter="#{usuarioController.converter()}">
-                    <f:selectItems value="#{usuarioController.listaEntidade}"
-                                   var="item"
-                                   itemLabel="#{item.nome}"
-                                   itemValue="#{item}"/>
-                </p:selectOneMenu>
+                
             </p:panelGrid>
             <p:panelGrid id="produto" columns="7" layout="grid">
                 <p:outputLabel value="Produto" for="produto"/>
