@@ -47,7 +47,12 @@ and open the template in the editor.
                         <h:outputText value="#{item.pessoa.cep}"/>
                     </p:column>
                     <p:column headerText="Crédito">
-                        <h:outputText value="#{item.credito}"/>
+                        <h:outputText value="#{item.credito}">
+                            <f:convertNumber minFractionDigits="2"
+                                             minIntegerDigits="2"
+                                             type="currency"
+                                             currencySymbol="R$"/>
+                        </h:outputText>
                     </p:column>
                     
                     <f:facet name="footer">

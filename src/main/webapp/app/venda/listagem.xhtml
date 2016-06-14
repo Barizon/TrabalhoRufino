@@ -34,7 +34,12 @@
                         <h:outputText value="#{item.dataVenda}"/>
                     </p:column>
                     <p:column headerText="Total">
-                        <h:outputText value="#{item.total}"/>
+                        <h:outputText value="#{item.total}">
+                            <f:convertNumber minFractionDigits="2"
+                                             minIntegerDigits="2"
+                                             type="currency"
+                                             currencySymbol="R$"/>
+                        </h:outputText>
                     </p:column>
                     <p:column headerText="Status">
                         <h:outputText value="#{item.vendaTipo.descricao}"/>

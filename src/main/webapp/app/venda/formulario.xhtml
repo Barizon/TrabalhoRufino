@@ -33,8 +33,7 @@
                 <p:outputLabel value="Produto" for="produto"/>
                 <p:selectOneMenu value="#{vendaController.vendaItem.produto}"
                                  filter="true" filterMatchMode="contains"
-                                 converter="#{produtoController.converter()}" required="true" 
-                                 requiredMessage="Produto obrigatório">
+                                 converter="#{produtoController.converter()}">
                     <f:selectItem  itemLabel="Selecione"
                                    itemValue="null"/>
                     <f:ajax event="change" render="est"/>

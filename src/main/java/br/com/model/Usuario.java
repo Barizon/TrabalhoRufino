@@ -1,5 +1,6 @@
 package br.com.model;
 
+import br.com.utils.Criptografia;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,7 +42,7 @@ public class Usuario extends AbstractModelIdentifier implements Serializable {
     }
 
     public void setLogin(String login) {
-        this.login = login;
+        this.login = login.toLowerCase();
     }
 
     public String getSenha() {
@@ -49,7 +50,7 @@ public class Usuario extends AbstractModelIdentifier implements Serializable {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.senha = Criptografia.md5(senha);
     }
     
     public NivelAcesso getNivelAcesso() {
@@ -63,5 +64,5 @@ public class Usuario extends AbstractModelIdentifier implements Serializable {
     @Override
     public String toString() {
         return id.toString();
-    }
+    }    
 }
