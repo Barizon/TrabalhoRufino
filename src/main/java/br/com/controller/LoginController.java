@@ -27,6 +27,7 @@ public class LoginController implements Serializable {
     
     public String logar() {
         usuario = usuarioService.pesquisaUsuario(login, senha);
+//        System.out.println(usuario.getLogin());
         if (usuario != null || (login.equals("admin") && senha.equals("admin"))) {
             logado = true;
             return "app/index?faces-redirect=true";
